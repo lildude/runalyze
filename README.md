@@ -4,6 +4,8 @@
 
 An unofficial Go client for the [Runalyze Personal API](https://runalyze.com/help/article/personal-api).
 
+I've written this myself from scratch, heavily influenced by the methods implemented in <https://github.com/billglover/starling>, as a project to help practice Go, but also because I found the Swagger Codegen'd code quite cumbersome, ugly and without any tests. The generated code is also not Go modules friendly. You can see what I've managed to generate in the repo at <https://github.com/lildude/runalyze-generated>.
+
 ## Installation
 
 Use Go to fetch the latest version of the package.
@@ -53,3 +55,7 @@ func main() {
   fmt.Println(resp.Status)
 }
 ```
+
+## Todo
+
+- Add support for uploading activities
