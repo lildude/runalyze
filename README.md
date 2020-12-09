@@ -1,5 +1,7 @@
 # Runalyze
 
+![Tests Status Badge](https://github.com/lildude/runalyze/workflows/Tests/badge.svg)
+
 An unofficial Go client for the [Runalyze Personal API](https://runalyze.com/help/article/personal-api).
 
 ## Installation
