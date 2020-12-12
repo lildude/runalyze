@@ -119,7 +119,7 @@ func (c *Client) Do(ctx context.Context, req *http.Request, v interface{}) (*htt
 		// Try parsing the response using the standard error schema. If this fails we wrap the parsing
 		// error and return. Otherwise return the errors included in the API response payload.
 		var e = Errors{}
-		fmt.Printf("%v", data)
+		fmt.Printf("Data: %s\n", data)
 		err := json.Unmarshal(data, &e)
 		if err != nil {
 			err = errors.Wrap(err, http.StatusText(resp.StatusCode))
