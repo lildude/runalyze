@@ -7,12 +7,12 @@ import (
 
 // Metrics represents the data of all pssible metrics
 type Metrics struct {
-	Sleep           Sleep           `json:"sleep,omitempty"`
-	BodyComposition BodyComposition `json:"bodyComposition,omitempty"`
-	BloodPressure   BloodPressure   `json:"bloodPressure,omitempty"`
-	HeartRateRest   HeartRateRest   `json:"heartRateRest,omitempty"`
-	HeartRateMax    HeartRateMax    `json:"heartRateMax,omitempty"`
-	MentalState     MentalState     `json:"mental,omitempty"`
+	Sleep           []Sleep             `json:"sleep,omitempty"`
+	BodyComposition []BodyComposition   `json:"bodyComposition,omitempty"`
+	BloodPressure   []BloodPressure     `json:"bloodPressure,omitempty"`
+	HeartRateRest   []HeartRateRest     `json:"heartRateRest,omitempty"`
+	HeartRateMax    []HeartRateMax      `json:"heartRateMax,omitempty"`
+	MentalState     []MentalState       `json:"mental,omitempty"`
 }
 
 // CreateMetrics creates a new metrics entry

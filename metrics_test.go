@@ -18,42 +18,54 @@ var metricTestCases = []struct {
 	{
 		name: "full metrics data",
 		m: Metrics{
-			Sleep: Sleep{
-				DateTime:           time.Now(),
-				Duration:           460,
-				RemDuration:        80,
-				LightSleepDuration: 70,
-				DeepSleepDuration:  70,
-				AwakeDuration:      70,
-				Quality:            8,
+			Sleep: []Sleep{
+				{
+					DateTime:           time.Now(),
+					Duration:           460,
+					RemDuration:        80,
+					LightSleepDuration: 70,
+					DeepSleepDuration:  70,
+					AwakeDuration:      70,
+					Quality:            8,
+				},
 			},
-			BodyComposition: BodyComposition{
-				DateTime:         time.Now(),
-				Weight:           82.5,
-				FatPercentage:    11.23,
-				WaterPercentage:  1.5,
-				MusclePercentage: 19.7,
-				BonePercentage:   98,
+			BodyComposition: []BodyComposition{
+				{
+					DateTime:         time.Now(),
+					Weight:           82.5,
+					FatPercentage:    11.23,
+					WaterPercentage:  1.5,
+					MusclePercentage: 19.7,
+					BonePercentage:   98,
+				},
 			},
-			BloodPressure: BloodPressure{
-				DateTime:  time.Now(),
-				Systolic:  120,
-				Diastolic: 80,
-				HeartRate: 70,
+			BloodPressure: []BloodPressure{
+				{
+					DateTime:  time.Now(),
+					Systolic:  120,
+					Diastolic: 80,
+					HeartRate: 70,
+				},
 			},
-			HeartRateRest: HeartRateRest{
-				DateTime:  time.Now(),
-				HeartRate: 100,
+			HeartRateRest: []HeartRateRest{
+				{
+					DateTime:  time.Now(),
+					HeartRate: 100,
+				},
 			},
-			HeartRateMax: HeartRateMax{
-				DateTime:  time.Now(),
-				HeartRate: 192,
+			HeartRateMax: []HeartRateMax{
+				{
+					DateTime:  time.Now(),
+					HeartRate: 192,
+				},
 			},
-			MentalState: MentalState{
-				DateTime: time.Now(),
-				Fatigue:  8,
-				Stress:   5,
-				Mood:     2,
+			MentalState: []MentalState{
+				{
+					DateTime: time.Now(),
+					Fatigue:  8,
+					Stress:   5,
+					Mood:     2,
+				},
 			},
 		},
 		status: http.StatusCreated,
@@ -61,21 +73,29 @@ var metricTestCases = []struct {
 	{
 		name: "partial metrics data",
 		m: Metrics{
-			Sleep: Sleep{
-				DateTime: time.Now(),
-				Duration: 460,
+			Sleep: []Sleep{
+				{
+					DateTime: time.Now(),
+					Duration: 460,
+				},
 			},
-			BodyComposition: BodyComposition{
-				DateTime: time.Now(),
-				Weight:   82.5,
+			BodyComposition: []BodyComposition{
+				{
+					DateTime: time.Now(),
+					Weight:   82.5,
+				},
 			},
-			HeartRateRest: HeartRateRest{
-				DateTime:  time.Now(),
-				HeartRate: 100,
+			HeartRateRest: []HeartRateRest{
+				{
+					DateTime:  time.Now(),
+					HeartRate: 100,
+				},
 			},
-			HeartRateMax: HeartRateMax{
-				DateTime:  time.Now(),
-				HeartRate: 192,
+			HeartRateMax: []HeartRateMax{
+				{
+					DateTime:  time.Now(),
+					HeartRate: 192,
+				},
 			},
 		},
 		status: http.StatusCreated,
@@ -83,9 +103,11 @@ var metricTestCases = []struct {
 	{
 		name: "partial metrics data with invalid entry",
 		m: Metrics{
-			HeartRateMax: HeartRateMax{
-				DateTime:  time.Now(),
-				HeartRate: 999,
+			HeartRateMax: []HeartRateMax{
+				{
+					DateTime:  time.Now(),
+					HeartRate: 999,
+				},
 			},
 		},
 		status: http.StatusBadRequest,
