@@ -105,9 +105,7 @@ func (c *Client) Do(ctx context.Context, req *http.Request, v interface{}) (*htt
 	}
 	resp.Body.Close()
 
-	// Anything other than a HTTP 2xx response code is treated as an error. But the structure of error
-	// responses differs depending on the API being called. Some APIs return validation errors as part
-	// of the standard response. Others respond with a standardised error structure.
+	// Anything other than a HTTP 2xx response code is treated as an error.
 	if c := resp.StatusCode; c >= 300 {
 
 		// Handle auth errors
@@ -118,28 +116,14 @@ func (c *Client) Do(ctx context.Context, req *http.Request, v interface{}) (*htt
 
 		// Try parsing the response using the standard error schema. If this fails we wrap the parsing
 		// error and return. Otherwise return the errors included in the API response payload.
-		var e = Errors{}
+		var e Error
 		err := json.Unmarshal(data, &e)
 		if err != nil {
 			err = errors.Wrap(err, http.StatusText(resp.StatusCode))
 			return resp, errors.Wrap(err, "unable to parse API error response")
 		}
 
-		if len(e) != 0 {
-			return resp, errors.Wrap(e, http.StatusText(resp.StatusCode))
-		}
-
-		// In some cases, the error response is returned as part of the
-		// requested resource. In these cases we attempt to decode the
-		// resource and return the error.
-		err = json.Unmarshal(data, v)
-		if err != nil {
-			err = errors.Wrap(err, http.StatusText(resp.StatusCode))
-			return resp, errors.Wrap(err, "unable to parse API response")
-		}
-
-		err = errors.New("no additional error information available")
-		return resp, errors.Wrap(err, http.StatusText(resp.StatusCode))
+		return resp, errors.Wrap(e, http.StatusText(resp.StatusCode))
 	}
 
 	if v != nil && len(data) != 0 {

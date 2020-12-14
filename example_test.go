@@ -31,7 +31,7 @@ func Example_sleep() {
 	}
 	resp, err := cl.CreateSleep(ctx, sleep)
 	if err != nil {
-		fmt.Println("Whoops!")
+		fmt.Println(err.Error())
 	}
 	fmt.Println(resp.Status)
 }

@@ -194,9 +194,6 @@ func TestDo(t *testing.T) {
 		if _, ok := err.(AuthError); ok == false {
 			t.Errorf("should return a starling.AuthError: %T", err)
 		}
-		if err, ok := err.(Error); ok == true && err.Temporary() == true {
-			t.Errorf("should not return a temporary error")
-		}
 
 	})
 
