@@ -23,7 +23,7 @@ func TestNewClient(t *testing.T) {
 	c := NewClient(cfg)
 
 	assert.Equal(t, BaseURLV1, c.baseURL.String(), "should configure the client to use the default url")
-	assert.Equal(t, "Testing/0.0.1 (go-runalyze/dev)", c.userAgent)
+	assert.Equal(t, fmt.Sprintf("Testing/0.0.1 (go-runalyze/%s)", version), c.userAgent)
 	assert.Equal(t, "123456", c.apiToken, "should configure the client to use the API token")
 }
 
