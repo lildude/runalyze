@@ -25,7 +25,7 @@ var (
 type Client struct {
 	baseURL   *url.URL
 	apiToken  string
-	userAgent string
+	UserAgent string
 	client    *http.Client
 }
 
@@ -41,7 +41,7 @@ func NewClient(cfg Configuration) *Client {
 	baseURL, _ := url.Parse(BaseURLV1)
 	ua := fmt.Sprintf("%s (%s)", cfg.AppName, userAgent)
 
-	c := &Client{baseURL: baseURL, userAgent: ua, apiToken: cfg.Token, client: cc}
+	c := &Client{baseURL: baseURL, UserAgent: ua, apiToken: cfg.Token, client: cc}
 	return c
 }
 
@@ -80,8 +80,8 @@ func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Requ
 		req.Header.Set("Content-Type", "application/json")
 	}
 	req.Header.Set("Accept", "application/json")
-	if c.userAgent != "" {
-		req.Header.Set("User-Agent", c.userAgent)
+	if c.UserAgent != "" {
+		req.Header.Set("User-Agent", c.UserAgent)
 	}
 
 	return req, nil

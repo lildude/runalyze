@@ -23,7 +23,7 @@ func TestNewClient(t *testing.T) {
 	c := NewClient(cfg)
 
 	assert.Equal(t, BaseURLV1, c.baseURL.String(), "should configure the client to use the default url")
-	assert.Equal(t, fmt.Sprintf("Testing/0.0.1 (go-runalyze/%s)", version), c.userAgent)
+	assert.Equal(t, fmt.Sprintf("Testing/0.0.1 (go-runalyze/%s)", version), c.UserAgent)
 	assert.Equal(t, "123456", c.apiToken, "should configure the client to use the API token")
 }
 
@@ -50,7 +50,7 @@ func TestNewRequest(t *testing.T) {
 
 		body, _ := ioutil.ReadAll(req.Body)
 		assert.Equal(tc, outBody, string(body), "should encode the request body as JSON")
-		assert.Equal(tc, c.userAgent, req.Header.Get("User-Agent"), "should pass the correct user agent")
+		assert.Equal(tc, c.UserAgent, req.Header.Get("User-Agent"), "should pass the correct user agent")
 		assert.Equal(tc, "application/json", req.Header.Get("Content-Type"), "should set the content-type as application/json")
 		assert.Equal(tc, "123456", req.Header.Get("token"), "should pass the API token in the headers")
 	})
