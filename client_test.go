@@ -16,14 +16,10 @@ import (
 // TestNewClient confirms that a client can be created with the default baseURL
 // and default User-Agent.
 func TestNewClient(t *testing.T) {
-	cfg := Configuration{
-		AppName: "Testing/0.0.1",
-		Token: "123456",
-	}
-	c := NewClient(cfg)
+	c := NewClient("123456")
 
 	assert.Equal(t, BaseURLV1, c.baseURL.String(), "should configure the client to use the default url")
-	assert.Equal(t, fmt.Sprintf("Testing/0.0.1 (go-runalyze/%s)", version), c.UserAgent)
+	assert.Equal(t, "go-runalyze", c.UserAgent)
 	assert.Equal(t, "123456", c.apiToken, "should configure the client to use the API token")
 }
 
@@ -31,11 +27,7 @@ func TestNewClient(t *testing.T) {
 // correct URL, a correctly encoded body and the correct User-Agent and
 // Content-Type headers set.
 func TestNewRequest(t *testing.T) {
-	cfg := Configuration{
-		AppName: "Testing/0.0.1",
-		Token: "123456",
-	}
-	c := NewClient(cfg)
+	c := NewClient("123456")
 
 	t.Run("valid request", func(tc *testing.T) {
 
@@ -214,11 +206,7 @@ func setup() (client *Client, mux *http.ServeMux, serverURL string, teardown fun
 	mux = http.NewServeMux()
 	server := httptest.NewServer(mux)
 
-	cfg := Configuration{
-		AppName: "Testing/0.0.1",
-		Token: "123456",
-	}
-	c := NewClient(cfg)
+	c := NewClient("123456")
 	url, _ := url.Parse(server.URL + "/")
 	c.baseURL = url
 

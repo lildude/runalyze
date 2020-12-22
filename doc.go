@@ -10,11 +10,7 @@ different functions of the Runalyze API. All of the API calls require an access
 token which should be passed when initialising the client. For example:
 
 	ctx := context.Background()
-	cfg := runalyze.Configuration{
-    AppName: "My Cool App/3.2.1",
-    Token: "RUNALYZE_ACCESS_TOKEN",
-  }
-	client := runalyze.NewClient(cfg)
+	client := runalyze.NewClient(os.Getenv("RUNALYZE_ACCESS_TOKEN"))
 
 	// Create a new sleep entry
 	startSleep, _ := time.Parse(time.RFC3339, "2020-11-07T23:00:00Z")

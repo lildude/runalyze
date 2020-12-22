@@ -17,8 +17,7 @@ import (
 var (
 	// BaseURLV1 is Runalyze's v1 API endpoint
 	BaseURLV1 = "https://runalyze.com/api/v1/"
-	version = "dev"
-	userAgent = fmt.Sprintf("go-runalyze/%s", version)
+	userAgent = "go-runalyze"
 )
 
 // Client holds configuration items for the Runalyze client and provides methods that interact with the Runalyze API.
@@ -29,19 +28,12 @@ type Client struct {
 	client    *http.Client
 }
 
-// Configuration holds the client information used when initialising the client
-type Configuration struct {
-	AppName string
-	Token string
-}
-
 // NewClient returns a new Runalyze API client.
-func NewClient(cfg Configuration) *Client {
+func NewClient(token string) *Client {
 	cc := http.DefaultClient
 	baseURL, _ := url.Parse(BaseURLV1)
-	ua := fmt.Sprintf("%s (%s)", cfg.AppName, userAgent)
 
-	c := &Client{baseURL: baseURL, UserAgent: ua, apiToken: cfg.Token, client: cc}
+	c := &Client{baseURL: baseURL, UserAgent: userAgent, apiToken: token, client: cc}
 	return c
 }
 

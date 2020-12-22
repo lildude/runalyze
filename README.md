@@ -16,9 +16,7 @@ go get -u 'github.com/lildude/runalyze'
 
 You will need an access token to query the API. You can generate tokens in your account at [Personal API](https://runalyze.com/settings/personal-api).
 
-When using the client, you will also need to supply a name of your application. This is used in the user agent when querying the API and is used to identify applications that are accessing the API and enable Runalyze to contact the application author if there are problems. So pick a name that stands out!
-
-With your token and application name, you can then access the API using approach similar to this:
+With your token, you can then access the API using approach similar to this:
 
 ```go
 package main
@@ -36,11 +34,7 @@ import (
 func main() {
   godotenv.Load(".env")
   ctx := context.Background()
-  cfg := runalyze.Configuration{
-    AppName: "My Cool App/3.2.1",
-    Token: os.Getenv("RUNALYZE_ACCESS_TOKEN"),
-  }
-  cl := runalyze.NewClient(cfg)
+  cl := runalyze.NewClient(os.Getenv("RUNALYZE_ACCESS_TOKEN"))
 
   startSleep, _ := time.Parse(time.RFC3339, "2020-11-07T23:00:00Z")
   sleep := runalyze.Sleep{

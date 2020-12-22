@@ -17,11 +17,7 @@ import (
 func Example_sleep() {
 	godotenv.Load(".env")
 	ctx := context.Background()
-	cfg := runalyze.Configuration{
-		AppName: "go-runalyze Testing",
-		Token: os.Getenv("RUNALYZE_ACCESS_TOKEN"),
-	}
-	cl := runalyze.NewClient(cfg)
+	cl := runalyze.NewClient(os.Getenv("RUNALYZE_ACCESS_TOKEN"))
 
 	startSleep, _ := time.Parse(time.RFC3339, "2020-11-07T23:00:00Z")
 	sleep := runalyze.Sleep{
@@ -43,11 +39,7 @@ func Example_sleep() {
 func Example_bloodPressure() {
 	godotenv.Load(".env")
 	ctx := context.Background()
-	cfg := runalyze.Configuration{
-		AppName: "go-runalyze Testing",
-		Token: os.Getenv("RUNALYZE_ACCESS_TOKEN"),
-	}
-	cl := runalyze.NewClient(cfg)
+	cl := runalyze.NewClient(os.Getenv("RUNALYZE_ACCESS_TOKEN"))
 
 	date, _ := time.Parse(time.RFC3339, "2020-11-07T23:00:00Z")
 	bp := runalyze.BloodPressure{
