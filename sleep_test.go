@@ -24,6 +24,8 @@ var sleepTestCases = []struct {
 			LightSleepDuration: 70,
 			DeepSleepDuration:  70,
 			AwakeDuration:      70,
+			HrAverage:          89,
+			HrLowest:           60,
 			Quality:            8,
 		},
 		status: http.StatusCreated,

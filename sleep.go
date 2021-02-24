@@ -14,6 +14,8 @@ type Sleep struct {
 	LightSleepDuration int       `json:"light_sleep_duration,omitempty"`
 	DeepSleepDuration  int       `json:"deep_sleep_duration,omitempty"`
 	AwakeDuration      int       `json:"awake_duration,omitempty"`
+	HrAverage          int       `json:"hr_average,omitempty"`
+	HrLowest           int       `json:"hr_lowest,omitempty"`
 	Quality            int       `json:"quality,omitempty"`
 }
 
