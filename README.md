@@ -58,6 +58,10 @@ func main() {
 
 I've written this myself from scratch, heavily influenced by the methods implemented in <https://github.com/billglover/starling>, as a project to help practice Go, but also because I found the Swagger Codegen'd code quite cumbersome, ugly and without any tests. The generated code is also not Go modules friendly and requires bundling with your application. You can see what I've managed to generate in the repo at <https://github.com/lildude/runalyze-generated>.
 
+## Releasing
+
+This project uses [GoReleaser](https://goreleaser.com) via GitHub Actions to make the releases quick and easy. When I'm ready for a new release, I push a new tag and the workflow takes care of things.
+
 ## Todo
 
 - Add support for uploading activities
